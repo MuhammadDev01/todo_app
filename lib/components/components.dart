@@ -4,6 +4,7 @@ Widget defaultTextFormField({
   TextEditingController? controller,
   required String label,
   required Icon prefixIcon,
+  required Color borderColor,
   required String message,
   void Function(String)? onFieldSubmitted,
   void Function()? onTap,
@@ -29,8 +30,16 @@ Widget defaultTextFormField({
         decoration: InputDecoration(
           prefixIcon: prefixIcon,
           label: Text(label),
-          border: const OutlineInputBorder(),
-          enabledBorder: const OutlineInputBorder(),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: borderColor,
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: borderColor,
+            ),
+          ),
         ),
       ),
     );
@@ -39,4 +48,5 @@ Widget myDivier() => Container(
       color: Colors.grey[300],
       width: double.infinity,
       height: 1,
+      margin: const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
     );

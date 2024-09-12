@@ -13,12 +13,13 @@ class TasksCubit extends Cubit<TasksStates> {
   List newTasks = [];
   List doneTasks = [];
   List archivedTasks = [];
-  String? name;
-  String? time;
-  String? date;
+  TextEditingController nameController = TextEditingController();
+  TextEditingController timeController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
   int currentIndex = 0;
   bool isOpenBottom = true;
   Database? database;
+  bool isDark = false;
 
   final List<Widget> pages = const [
     NewTasksPage(),
@@ -34,6 +35,11 @@ class TasksCubit extends Cubit<TasksStates> {
   changeIndex(int index) {
     currentIndex = index;
     emit(BottomNavigatorHomeState());
+  }
+
+  changeThemeMode() {
+    isDark = !isDark;
+    emit(ChangeThemeModeState());
   }
 
   openBottom() {

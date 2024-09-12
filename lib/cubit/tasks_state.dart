@@ -20,3 +20,5 @@ final class GetDatabaseState extends TasksStates {}
 final class UpdateDataState extends TasksStates {}
 
 final class DeleteDataState extends TasksStates {}
+final class ChangeThemeModeState extends TasksStates {}
+
