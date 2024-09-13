@@ -3,10 +3,15 @@ import 'package:intl/intl.dart';
 import 'package:todo_app/components/components.dart';
 import 'package:todo_app/cubit/tasks_cubit.dart';
 
-class BottomSheetItems extends StatelessWidget {
+class BottomSheetItems extends StatefulWidget {
   const BottomSheetItems({super.key});
-  //DateTime timeNow = DateTime.now();
 
+  @override
+  State<BottomSheetItems> createState() => _BottomSheetItemsState();
+}
+
+class _BottomSheetItemsState extends State<BottomSheetItems> {
+  DateTime timeNow = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -34,17 +39,7 @@ class BottomSheetItems extends StatelessWidget {
           prefixIcon: const Icon(Icons.watch_later_outlined),
           message: 'task time',
           onTap: () async {
-            showTimePicker(
-              context: context,
-              initialTime: TimeOfDay.now(),
-            ).then((value) {
-              if (value != null) {
-                TasksCubit.get(context).timeController.text =
-                    value.format(context);
-              } else {
-                return null;
-              }
-            });
+            showTimePickerMethod();
           },
           borderColor:
               TasksCubit.get(context).isDark ? Colors.white : Colors.black,
@@ -57,23 +52,50 @@ class BottomSheetItems extends StatelessWidget {
           label: 'Date Task',
           prefixIcon: const Icon(Icons.date_range_outlined),
           message: 'task date',
-          onTap: () => showDatePicker(
-            context: context,
-            initialDate: DateTime.now(),
-            firstDate: DateTime.now(),
-            lastDate: DateTime.now().add(const Duration(days: 365)),
-          ).then((value) {
-            if (value != null) {
-              TasksCubit.get(context).dateController.text =
-                  DateFormat.yMMMd().format(value);
-            } else {
-              return null;
-            }
-          }),
+          onTap: () {
+            showDatePickerMethod();
+          },
           borderColor:
               TasksCubit.get(context).isDark ? Colors.white : Colors.black,
         ),
       ],
+    );
+  }
+
+  void showDatePickerMethod() {
+    showDatePicker(
+      context: context,
+      initialDate: timeNow,
+      firstDate: timeNow,
+      lastDate: timeNow.add(const Duration(days: 365)),
+    ).then(
+      (value) {
+        if (value != null) {
+          if (mounted) {
+            TasksCubit.get(context).dateController.text =
+                DateFormat.yMMMd().format(value);
+          }
+        } else {
+          return null;
+        }
+      },
+    );
+  }
+
+  void showTimePickerMethod() {
+    showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    ).then(
+      (value) {
+        if (value != null) {
+          if (mounted) {
+            TasksCubit.get(context).timeController.text = value.format(context);
+          }
+        } else {
+          return null;
+        }
+      },
     );
   }
 }

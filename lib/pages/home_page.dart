@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/cubit/tasks_cubit.dart';
@@ -78,7 +76,7 @@ class _HomePageState extends State<HomePage> {
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              showBottomSheetMethod(context);
+              showBottomSheetMethod();
             },
             backgroundColor: Colors.blue,
             child: Icon(
@@ -93,7 +91,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void showBottomSheetMethod(BuildContext context) {
+  void showBottomSheetMethod() {
     if (TasksCubit.get(context).isOpenBottom) {
       scaffoldKey.currentState
           ?.showBottomSheet(
@@ -103,7 +101,7 @@ class _HomePageState extends State<HomePage> {
               color: Theme.of(context).scaffoldBackgroundColor,
               child: Form(
                 key: formKey,
-                child: BottomSheetItems(),
+                child: const BottomSheetItems(),
               ),
             ),
           )

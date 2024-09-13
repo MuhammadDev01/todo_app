@@ -29,6 +29,8 @@ class TasksBuilder extends StatelessWidget {
                   decoration: const BoxDecoration(
                       gradient:
                           LinearGradient(begin: Alignment.center, colors: [
+                    Colors.red,
+                    Colors.white,
                     Colors.white,
                     Colors.red,
                   ])),
@@ -95,7 +97,6 @@ class TasksBuilder extends StatelessWidget {
                             : const Icon(
                                 Icons.check_box,
                                 color: Colors.teal,
-                                
                               ),
                       ),
                       const SizedBox(
