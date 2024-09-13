@@ -95,9 +95,9 @@ class TasksCubit extends Cubit<TasksStates> {
     ).then(
       (value) async {
         emit(InsertDatabaseState());
-        debugPrint(
-          '$value INSERTED SUCCESSFULLY ..!',
-        );
+        nameController.clear();
+        timeController.clear();
+        dateController.clear();
         await getDataFromDatabase(database!);
       },
     ).catchError(
