@@ -31,8 +31,8 @@ class TasksBuilder extends StatelessWidget {
                           LinearGradient(begin: Alignment.center, colors: [
                     Colors.red,
                     Colors.white,
-                    Colors.white,
                     Colors.red,
+                    Colors.white,
                   ])),
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
